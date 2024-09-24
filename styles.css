@@ -166,7 +166,7 @@ input:focus {
     height: 1.8rem;
     position: relative;
     background-color: rgb(34 179 65);
-    width: 31%;
+    width: 33%;
     padding: 9px;
     border: none;
     color: white;
@@ -183,7 +183,7 @@ input:focus {
 }
 
 .HideInfo {
-    right: 2%;
+    right: 1.5%;
     top: 0.5rem;
     height: 1.8rem;
     position: relative;
@@ -202,7 +202,7 @@ input:focus {
 }
 
 .logout {
-    right: 4%;
+    right: 2.5%;
     top: 0.5rem;
     height: 1.8rem;
     position: relative;
