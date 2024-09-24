@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فحص مواعيد</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+</head>
+<body>
+    <div class="login-container">
+      
+    <div class="loginFormCont">
+        <div class="border77">
+            <h2>التسجيل</h2>
+        </div>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="NumWassit">رقم بطاقة طالب العمل</label>
+                <input type="text" id="NumWassit" name="NumWassit" placeholder="رقم بطاقة طالب العمل" required>
+            </div>
+            <div class="input-group">
+                <label for="natNumID">رقم التعريف الوطني / رقم بطاقة التعريف</label>
+                <input type="text" id="natNumID" name="natNumID" placeholder="رقم التعريف الوطني / رقم بطاقة التعريف" required>
+            </div>
+            <div id="notify">
+                <p id="message"></p>
+                 </div>
+           
+            <button type="submit">إرسـال</button>
+                </div>
+        </form>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
