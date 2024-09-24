@@ -13,7 +13,8 @@ body {
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
     border-radius: 8px;
-    width: 30%;
+    width: 100%;
+    max-width: 400px; /* لتحديد الحد الأقصى للعرض على الشاشات الكبيرة */
     position: relative;
     top: 0rem;
     text-align: center;
@@ -100,4 +101,11 @@ button:hover {
     font-weight: bold;
     padding-top: 2%;
     color: rgb(255, 255, 255);
+}
+
+@media (max-width: 600px) {
+    .login-container {
+        padding: 15px;
+        width: 90%; /* عرض بنسبة على الشاشات الصغيرة */
+    }
 }
