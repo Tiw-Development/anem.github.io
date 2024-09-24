@@ -5,33 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>فحص مواعيد</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
     <div class="login-container">
-      
-    <div class="loginFormCont">
-        <div class="border77">
-            <h2>التسجيل</h2>
-        </div>
-        <form id="loginForm">
-            <div class="input-group">
-                <label for="NumWassit">رقم بطاقة طالب العمل</label>
-                <input type="text" id="NumWassit" name="NumWassit" placeholder="رقم بطاقة طالب العمل" required>
+        <div class="loginFormCont">
+            <div class="login-border">
+                <h2>التسجيل</h2>
             </div>
-            <div class="input-group">
-                <label for="natNumID">رقم التعريف الوطني / رقم بطاقة التعريف</label>
-                <input type="text" id="natNumID" name="natNumID" placeholder="رقم التعريف الوطني / رقم بطاقة التعريف" required>
-            </div>
-            <div id="notify">
-                <p id="message"></p>
-                 </div>
-           
-            <button type="submit">إرسـال</button>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="NumWassit">رقم بطاقة طالب العمل</label>
+                    <input type="text" id="NumWassit" name="NumWassit" placeholder="رقم بطاقة طالب العمل" required>
                 </div>
-        </form>
+                <div class="input-group">
+                    <label for="natNumID">رقم التعريف الوطني / رقم بطاقة التعريف</label>
+                    <input type="text" id="natNumID" name="natNumID" placeholder="رقم التعريف الوطني / رقم بطاقة التعريف" required>
+                </div>
+                <div id="notify-login">
+                    <p id="message-login"></p>
+                </div>
+                <button class="envoyebtn" type="submit">إرسـال</button>
+            </form>
+        </div>
     </div>
     
+    <!-- إضافة جدول لعرض معلومات المستخدم -->
+    <div class="info-container" style="display:none;">
+        <div class="info-border">
+          <h2>معلوماتك</h2>
+        </div>
+        <div id="notify-checked">
+            <p id="message-checked">📅 تم العثور على 8 مواعيد ☑️</p>
+        </div>
+        <div class="info-table-border">
+        <table class="info-table">
+            <tbody class="info-table-body">
+              <tr>
+                <td>اللقب </td>
+                <td id="displayNom"></td>
+              </tr>
+              <tr>
+                <td>الاسم </td>
+                <td id="displayPrenom"></td>
+              </tr>
+              <tr>
+                <td>رقم بطاقة طالب العمل</td>
+                <td id="displayNatNumID"></td>
+              </tr>
+              <tr>
+                <td>المقابلة مبرمجة على مستوى وكالة	</td>
+                <td id="displayAgence"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div id="notify-info">
+            <p id="message-info"></p>
+        </div>
+        <div id="notify-info-info">
+            <p id="message-info-info" style="margin-block-end: -0.6em;"></p>
+        </div>
+        <button class="checkRend">ابدا البحث عن مواعيد</button>
+        <button class="HideInfo">إخفاء معلوماتي</button>
+        <button class="logout">تسجيل الخروج</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
