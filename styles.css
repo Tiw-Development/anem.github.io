@@ -306,3 +306,19 @@ input:focus {
         width: 85%;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .checkRend {
+        width: 38%;
+        right: -1%;
+    }
+    .HideInfo {
+        right: 0%;
+        width: 29%;
+    }
+
+    .logout {
+        right: 1%;
+        width: 29%;
+    }
+}
