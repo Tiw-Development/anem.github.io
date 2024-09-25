@@ -97,18 +97,35 @@ async function checkRendeVous() {
         if (Data && Data.dates) {
             const availableDates = Data.dates || [];
             if (availableDates.length > 0) {
-                document.getElementById("message-checked").textContent = `تم العثور على 📅 ${availableDates.length} مواعيد متاحة ☑️ `;
-                document.getElementById("displayAgence").style = "background-color: #3cff1847; color: rgba(255, 255, 255, 0.78)";
+                const firstDate = availableDates[0];
+                const lastDate = availableDates[availableDates.length - 1];
+                document.getElementById("message-checked").textContent = `📅 تم العثور على  ${availableDates.length} موعد متاحة ☑️ `;
                 document.getElementById("notify-checked").style.display = "block";
+                if (localStorage.getItem('theme') === 'dark') {
+                    document.getElementById("displayAgence").style = "background-color: #3cff1847; color: rgba(255, 255, 255, 0.78)";
+                   } else {
+                    document.getElementById("displayAgence").style = "background-color: #3cff1847; color: rgba(10, 10, 10, 0.78)";
+                    }
+
+                document.getElementById("notify-info").style.display = "block";
+                document.getElementById("message-info").style.paddingTop = "1%";
+                document.getElementById("message-info").textContent = `📅 من ${firstDate} الى ${lastDate} 📅`;
+                document.getElementById("notify-info").style = "background-color: #207444";
             } else {
+              
                 document.getElementById("message-info").textContent = "لا توجد مواعيد متاحة.";
                 document.getElementById("notify-info").style.display = "block";
+               document.getElementById("message-info").style.paddingTop = "2%";
+               if (localStorage.getItem('theme') === 'dark') {
                 document.getElementById("displayAgence").style = "background-color: #ff00003d; color: rgba(255, 255, 255, 0.78)";
+               } else {
+                document.getElementById("displayAgence").style = "background-color: #ff00003d; color: rgba(10, 10, 10, 0.78)";
+                }
             }
         } else {
-            document.getElementById("message-info").textContent = "لا توجد بيانات متاحة.";
+            document.getElementById("message-info").textContent = "حدث خطأ في الاتصال بالخادم.";
             document.getElementById("notify-info").style.display = "block";
-            document.getElementById("displayAgence").style = "background-color: #ff00003d; color: rgba(255, 255, 255, 0.78)";
+           document.getElementById("message-info").style.paddingTop = "2%";
         }
     } catch (error) {
         console.error("حدث خطأ أثناء جلب المواعيد:", error);
@@ -165,11 +182,20 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
                 localStorage.setItem('preInscriptionIdStored', preInscriptionId);
                 const availableDates = data3.dates || [];
                 if (availableDates.length > 0) {
-                    document.getElementById("message-info").textContent = `تم العثور على ${availableDates.length} مواعيد متاحة.`;
+                    const firstDate = availableDates[0];
+                    const lastDate = availableDates[availableDates.length - 1];
+                    document.getElementById("message-checked").textContent = `📅 تم العثور على  ${availableDates.length} موعد متاحة ☑️ `;
+                    document.getElementById("displayAgence").style = "background-color: #3cff1847; color: rgba(255, 255, 255, 0.78)";
+                    document.getElementById("notify-checked").style.display = "block";
+
                     document.getElementById("notify-info").style.display = "block";
+                    document.getElementById("message-info").style.paddingTop = "1%";
+                    document.getElementById("message-info").textContent = `📅 من ${firstDate} الى ${lastDate} 📅`;
+                    document.getElementById("notify-info").style = "background-color: #207444";
                 } else {
                     document.getElementById("message-info").textContent = "لا توجد مواعيد متاحة.";
                     document.getElementById("notify-info").style.display = "block";
+                    document.getElementById("message-info").style.paddingTop = "2%";
                 }
             } else {
                 document.getElementById("message-login").textContent = "حدث مشكلة ما , حاول مرة اخرى !";
@@ -202,14 +228,14 @@ let searchCount = 0;
 let countdown = 20; 
 
 function updateCountdown() {
-    document.getElementById("message-info-info").innerHTML = `الوقت المتبقي للبحث ${countdown} ثانية<br>تم البحث عن المواعيد ${searchCount} مرة`;
+    document.getElementById("message-info-info").innerHTML = `الوقت المتبقي لإعادة البحث ${countdown} ثانية<br> تم البحث ${searchCount} مرة`;
     document.getElementById("notify-info-info").style.display = "block";
     countdown--;
 
     if (countdown < 0) {
         countdown = 20;
         searchCount++;
-        document.getElementById("message-info-info").innerHTML = `الوقت المتبقي للبحث ${countdown} ثانية <br>تم البحث عن المواعيد ${searchCount} مرة`;
+        document.getElementById("message-info-info").innerHTML = `الوقت المتبقي لإعادة البحث ${countdown} ثانية <br> تم البحث ${searchCount} مرة`;
         document.getElementById("notify-info-info").style.display = "block";
         checkRendeVous();
     }
@@ -245,7 +271,7 @@ document.querySelector('.logout').addEventListener('click', function() {
 
 document.querySelector('.checkRend').addEventListener('click', function() {
     if (searching) {
-        document.querySelector('.checkRend').textContent = 'اوقف البحث عن مواعيد';
+        document.querySelector('.checkRend').textContent = 'اوقف البحث'
         document.querySelector('.checkRend').style = 'background-color: rgb(205 42 42)';
         intervalId = setInterval(checkRendeVous, 20000);
         countdownInterval = setInterval(updateCountdown, 1000);
@@ -253,12 +279,12 @@ document.querySelector('.checkRend').addEventListener('click', function() {
     } else {
         clearInterval(intervalId);
         clearInterval(countdownInterval);
-        document.querySelector('.checkRend').textContent = 'ابدا البحث عن مواعيد';
+        document.querySelector('.checkRend').textContent = 'ابدأ البحث'
         document.querySelector('.checkRend').style = 'background-color: rgb(34 179 65)';
         document.getElementById("notify-info").style.display = "none";
         countdown = 20; 
         searchCount = 0
-        document.getElementById("message-info-info").innerHTML = `الوقت المتبقي للبحث ${countdown} ثانية <br>تم البحث عن المواعيد ${searchCount} مرة`;
+        document.getElementById("message-info-info").innerHTML = `الوقت المتبقي لإعادة البحث ${countdown} ثانية <br> تم البحث${searchCount} مرة`;
     }
 
     searching  = !searching ;
