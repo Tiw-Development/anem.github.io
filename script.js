@@ -5,7 +5,7 @@ const info = document.querySelector('.info-container');
 const login = document.querySelector('.login-container');
 const rows = document.querySelectorAll('.info-table tr');
 
-// Check if there's a saved theme in localStorage and apply it
+
 if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
     info.classList.add('container-dark');
@@ -20,7 +20,6 @@ if (localStorage.getItem('theme') === 'dark') {
         const lastCell = row.querySelector('td:last-child');
         if (firstCell && lastCell) {
             firstCell.style = 'background-color: rgb(60 139 117 / 42%); color: #ffffffc7'; 
-            // lastCell.style = 'color: #ffffffc7'; 
             lastCell.style = 'background-color: rgb(28 28 28); color: #ffffffc7'; 
         }
     });
@@ -142,14 +141,14 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             const Prenom = data2.prenomDemandeurAr;
             const Agence = data2.structureAr;
 
-            // Store user information in localStorage
+           
             localStorage.setItem('NumWassit', NumWassit);
             localStorage.setItem('natNumID', natNumID);
             localStorage.setItem('Nom', Nom);
             localStorage.setItem('Prenom', Prenom);
             localStorage.setItem('Agence', Agence);
 
-            // Display user information
+            
             document.querySelector('.info-container').style.display = 'block';
             document.querySelector('.login-container').style.display = 'none';
             document.getElementById("displayNom").textContent = Nom;
@@ -250,7 +249,7 @@ document.querySelector('.checkRend').addEventListener('click', function() {
         document.querySelector('.checkRend').style = 'background-color: rgb(205 42 42)';
         intervalId = setInterval(checkRendeVous, 20000);
         countdownInterval = setInterval(updateCountdown, 1000);
-    // checkRendeVous();
+
     } else {
         clearInterval(intervalId);
         clearInterval(countdownInterval);
