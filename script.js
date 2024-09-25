@@ -1,3 +1,70 @@
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+const icon = document.querySelector('.icon');
+const info = document.querySelector('.info-container');
+const login = document.querySelector('.login-container');
+const rows = document.querySelectorAll('.info-table tr');
+
+// Check if there's a saved theme in localStorage and apply it
+if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-mode');
+    info.classList.add('container-dark');
+    login.classList.add('container-dark');
+    themeToggle.checked = true;
+    icon.classList.remove('fa-sun');
+    icon.classList.add('fa-moon');
+    
+    rows.forEach(row => {
+    
+        const firstCell = row.querySelector('td:first-child');
+        const lastCell = row.querySelector('td:last-child');
+        if (firstCell && lastCell) {
+            firstCell.style = 'background-color: rgb(60 139 117 / 42%); color: #ffffffc7'; 
+            // lastCell.style = 'color: #ffffffc7'; 
+            lastCell.style = 'background-color: rgb(28 28 28); color: #ffffffc7'; 
+        }
+    });
+}
+
+themeToggle.addEventListener('change', () => {
+    if (themeToggle.checked) {
+        body.classList.add('dark-mode');
+        info.classList.add('container-dark');
+        login.classList.add('container-dark');
+
+    rows.forEach(row => {
+    
+        const firstCell = row.querySelector('td:first-child');
+        const lastCell = row.querySelector('td:last-child');
+        if (firstCell && lastCell) {
+            firstCell.style = 'background-color: rgb(60 139 117 / 42%); color: #ffffffc7'; 
+            lastCell.style = 'background-color: rgb(28 28 28); color: #ffffffc7'; 
+        }
+    });
+        localStorage.setItem('theme', 'dark');
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        login.classList.add('container-dark');
+    } else {
+        body.classList.remove('dark-mode');
+        info.classList.remove('container-dark');
+        login.classList.remove('container-dark');
+
+
+        rows.forEach(row => {
+    
+            const firstCell = row.querySelector('td:first-child');
+            const lastCell = row.querySelector('td:last-child');
+            if (firstCell && lastCell) {
+                firstCell.style = 'background-color: #dbdbdb; color: #519985'; 
+                lastCell.style = 'background-color: #fff; color: #0a0a0ac7'; 
+            }
+        });
+        localStorage.setItem('theme', 'light');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+    }
+});
 
 function checkSession() {
     const storedNumWassit = localStorage.getItem('NumWassit');
@@ -32,17 +99,17 @@ async function checkRendeVous() {
             const availableDates = Data.dates || [];
             if (availableDates.length > 0) {
                 document.getElementById("message-checked").textContent = `تم العثور على 📅 ${availableDates.length} مواعيد متاحة ☑️ `;
-                document.getElementById("displayAgence").style = "background-color: #3cff1847;";
+                document.getElementById("displayAgence").style = "background-color: #3cff1847; color: rgba(255, 255, 255, 0.78)";
                 document.getElementById("notify-checked").style.display = "block";
             } else {
                 document.getElementById("message-info").textContent = "لا توجد مواعيد متاحة.";
                 document.getElementById("notify-info").style.display = "block";
-                document.getElementById("displayAgence").style = "background-color: #ff00003d;";
+                document.getElementById("displayAgence").style = "background-color: #ff00003d; color: rgba(255, 255, 255, 0.78)";
             }
         } else {
             document.getElementById("message-info").textContent = "لا توجد بيانات متاحة.";
             document.getElementById("notify-info").style.display = "block";
-            document.getElementById("displayAgence").style = "background-color: #ff00003d;";
+            document.getElementById("displayAgence").style = "background-color: #ff00003d; color: rgba(255, 255, 255, 0.78)";
         }
     } catch (error) {
         console.error("حدث خطأ أثناء جلب المواعيد:", error);
@@ -163,7 +230,7 @@ document.querySelector('.HideInfo').addEventListener('click', function() {
         document.getElementById("displayPrenom").textContent = localStorage.getItem('Prenom');
         document.getElementById("displayNatNumID").textContent = localStorage.getItem('NumWassit');
         document.querySelector('.HideInfo').textContent = 'إخفاء معلوماتي';
-        document.querySelector('.HideInfo').style = 'background-color: rgb(93 93 219)';
+        document.querySelector('.HideInfo').style = 'background-color: #0c38b5de';
     }
 
 
