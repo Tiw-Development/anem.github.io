@@ -325,15 +325,18 @@ input:focus {
     .checkRend {
         width: 28%;
         right: -1%;
+        padding: 0%;
     }
     .HideInfo {
         right: 1%;
         width: 33%;
+        padding: 0%;
     }
 
     .logout {
         right: 2%;
         width: 31%;
+        padding: 0%;
     }
 }
 
