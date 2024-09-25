@@ -9,6 +9,15 @@ body {
     direction: rtl;
 }
 
+.page-border {
+    background-color: #519985;
+    width: 100%;
+    position: absolute;
+    padding: 10px;
+    height: 5%;
+    top: 0%;
+}
+
 .login-container {
     background-color: rgba(255, 255, 255, 0.933);
     padding: 20px;
@@ -87,11 +96,10 @@ input:focus {
 
 
 .info-container {
-    margin-top: 20px;
+    margin-top: 45px;
     width: 100%;
     max-width: 400px;
     min-width: 30%;
-    margin: 20px auto;
     background-color: #fff;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 3px -2px, rgba(0, 0, 0, 0.14) 0px 3px 4px 0px, rgba(0, 0, 0, 0.12) 0px 1px 8px 0px;
@@ -112,7 +120,6 @@ input:focus {
 
 .info-table {
     width: 100%;
-    margin-top: 10px;
     border-radius: 4px;
     border-collapse: collapse;
     overflow: hidden;
@@ -141,7 +148,7 @@ input:focus {
     text-align: justify;
     width: 46%;
     color: #519985;
-    background-color: #f0f0f0;
+    background-color: #dbdbdb;
 }
 
 .info-table td:last-child {
@@ -304,21 +311,103 @@ input:focus {
     .info-container {
         padding: 15px;
         width: 85%;
+        margin-top: 0px;
     }
 }
 
 @media only screen and (max-width: 600px) {
     .checkRend {
-        width: 38%;
+        width: 39%;
         right: -1%;
     }
     .HideInfo {
         right: 0%;
-        width: 29%;
+        width: 28%;
     }
 
     .logout {
         right: 1%;
         width: 29%;
     }
+}
+
+
+.container-dark {
+    background-color: #292929;
+    border: 1.5px solid #48907CEE;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 22px;
+    right: 7%;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+
+.slider .icon {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+    font-size: 14px;
+    color: #ff8e19; 
+    transition: transform 0.4s, color 0.4s;
+}
+
+
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+input:checked + .slider .icon {
+transform: translate(27px, -8px);
+}
+
+
+input:checked + .slider {
+    background-color: #d18c0e;
+}
+
+
+input:checked + .slider .icon {
+    color: #555555; 
 }
