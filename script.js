@@ -1,6 +1,6 @@
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
-const icon = document.querySelector('.icon');
+const moon = document.querySelector('.fa-moon');
 const info = document.querySelector('.info-container');
 const login = document.querySelector('.login-container');
 const rows = document.querySelectorAll('.info-table tr');
@@ -10,9 +10,8 @@ if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
     info.classList.add('container-dark');
     login.classList.add('container-dark');
+    moon.style = "color: #fdfdfd";
     themeToggle.checked = true;
-    icon.classList.remove('fa-sun');
-    icon.classList.add('fa-moon');
     
     rows.forEach(row => {
     
@@ -30,6 +29,7 @@ themeToggle.addEventListener('change', () => {
         body.classList.add('dark-mode');
         info.classList.add('container-dark');
         login.classList.add('container-dark');
+        moon.style = "color: #fdfdfd";
 
     rows.forEach(row => {
     
@@ -41,13 +41,12 @@ themeToggle.addEventListener('change', () => {
         }
     });
         localStorage.setItem('theme', 'dark');
-        icon.classList.remove('fa-sun');
-        icon.classList.add('fa-moon');
         login.classList.add('container-dark');
     } else {
         body.classList.remove('dark-mode');
         info.classList.remove('container-dark');
         login.classList.remove('container-dark');
+        moon.style = "color: #8f8b8b";
 
 
         rows.forEach(row => {
@@ -60,8 +59,7 @@ themeToggle.addEventListener('change', () => {
             }
         });
         localStorage.setItem('theme', 'light');
-        icon.classList.remove('fa-moon');
-        icon.classList.add('fa-sun');
+
     }
 });
 
