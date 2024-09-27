@@ -145,7 +145,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
     const url = `https://ac-controle.anem.dz/AllocationChomage/api/validateCandidate/query?wassitNumber=${NumWassit}&identityDocNumber=${natNumID}`;
 
     try {
-        const response = await axios.get(url);
+        const response = await axios.get(url, { timeout: 10000 });
         const data = response.data;
 
         const preInscriptionId = data.preInscriptionId;
@@ -211,8 +211,21 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         }
     } catch (error) {
         console.error("حدث خطأ أثناء جلب البيانات:", error);
-        document.getElementById("message-login").textContent = `حدث خطأ في الاتصال بالخادم. ${error}`;
+        // document.getElementById("message-login").textContent = `حدث خطأ في الاتصال بالخادم. ${error}`;
         document.getElementById("notify-login").style.display = "block";
+        if (error.response) {
+            // إذا تم استلام استجابة مع رمز حالة غير 2xx
+            console.error("خطأ في الاستجابة من الخادم:", error.response);
+            document.getElementById("message-login").textContent = `خطأ في الاستجابة من الخادم: ${error.response.status} - ${error.response.data}`;
+        } else if (error.request) {
+            // إذا لم يتم استلام استجابة من الخادم
+            console.error("لم يتم استلام استجابة من الخادم:", error.request);
+            document.getElementById("message-login").textContent = "لم يتم استلام استجابة من الخادم. يرجى التحقق من الاتصال.";
+        } else {
+            // خطأ حدث أثناء إعداد الطلب
+            console.error("حدث خطأ أثناء إعداد الطلب:", error.message);
+            document.getElementById("message-login").textContent = `حدث خطأ في الاتصال بالخادم: ${error.message}`;
+        }
     }
 
     setTimeout(function() {
