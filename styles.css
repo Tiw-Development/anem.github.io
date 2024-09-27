@@ -321,8 +321,13 @@ input:focus {
     .info-container {
         padding: 15px;
         right: 2.5%;
-        width: 85%;
+        width: 87%;
         /* height: 33rem; */
+    }
+    .info-table-border {
+        width: 18.4rem;
+    left: 3%;
+    position: relative;
     }
     #notify-checked {
         width: 71%;
@@ -330,7 +335,7 @@ input:focus {
         right: 11%;
     }
     .switch {
-        top: 0.5rem;
+        top: 0.9rem;
     }
 }
 
@@ -342,6 +347,9 @@ input:focus {
     .info-container {
         padding: 15px;
         right: 0.978%;
+    }
+    .switch {
+        top: 0.8rem;
     }
 
 }
