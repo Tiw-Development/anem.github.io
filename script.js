@@ -6,6 +6,7 @@ const login = document.querySelector('.login-container');
 const rows = document.querySelectorAll('.info-table tr');
 
 
+
 if (localStorage.getItem('theme') === 'dark') {
     body.classList.add('dark-mode');
     info.classList.add('container-dark');
@@ -94,7 +95,9 @@ async function checkRendeVous() {
         
         if (Data && Data.dates) {
             const availableDates = Data.dates || [];
+            const audio = document.getElementById("tiw-audio");
             if (availableDates.length > 0) {
+
                 const firstDate = availableDates[0];
                 const lastDate = availableDates[availableDates.length - 1];
                 document.getElementById("message-checked").textContent = `📅 تم العثور على  ${availableDates.length} موعد متاحة ☑️ `;
@@ -110,7 +113,7 @@ async function checkRendeVous() {
                 document.getElementById("message-info").textContent = `📅 من ${firstDate} الى ${lastDate} 📅`;
                 document.getElementById("notify-info").style = "background-color: #207444";
             } else {
-              
+                audio.play()
                 document.getElementById("message-info").textContent = "لا توجد مواعيد متاحة.";
                 document.getElementById("notify-info").style.display = "block";
                document.getElementById("message-info").style.paddingTop = "2%";
@@ -208,7 +211,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         }
     } catch (error) {
         console.error("حدث خطأ أثناء جلب البيانات:", error);
-        document.getElementById("message-login").textContent = "حدث خطأ في الاتصال بالخادم.";
+        document.getElementById("message-login").textContent = `حدث خطأ في الاتصال بالخادم. ${error}`;
         document.getElementById("notify-login").style.display = "block";
     }
 
@@ -290,3 +293,5 @@ document.querySelector('.checkRend').addEventListener('click', function() {
 
 
 checkSession();
+
+
