@@ -113,7 +113,6 @@ async function checkRendeVous() {
                 document.getElementById("message-info").textContent = `📅 من ${firstDate} الى ${lastDate} 📅`;
                 document.getElementById("notify-info").style = "background-color: #207444";
             } else {
-                audio.play()
                 document.getElementById("message-info").textContent = "لا توجد مواعيد متاحة.";
                 document.getElementById("notify-info").style.display = "block";
                document.getElementById("message-info").style.paddingTop = "2%";
@@ -124,13 +123,13 @@ async function checkRendeVous() {
                 }
             }
         } else {
-            document.getElementById("message-info").textContent = `حدث خطأ في الاتصال بالخادم. 1 ${error}`;
+            document.getElementById("message-info").textContent = "الموقع لا يستجيب";
             document.getElementById("notify-info").style.display = "block";
            document.getElementById("message-info").style.paddingTop = "2%";
         }
     } catch (error) {
         console.error("حدث خطأ أثناء جلب المواعيد:", error);
-        document.getElementById("message-info").textContent = `حدث خطأ في الاتصال بالخادم. 2 ${error}`;
+        document.getElementById("message-info").textContent = "تحقق من  اتصالك من الانترنت / حدث خطا في اتصال بالخادم";
         document.getElementById("notify-info").style.display = "block";
     }
 }
