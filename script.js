@@ -89,7 +89,7 @@ async function checkRendeVous() {
     const Url_dates = `https://ac-controle.anem.dz/AllocationChomage/api/RendezVous/GetAvailableDates?StructureId=${storedStructureid}&PreInscriptionId=${storedPreInscriptionId}`;
     
     try {
-        const response = await axios.get(Url_dates);
+        const response = await axios.get(Url_dates, { timeout: 10000 });
         const Data = response.data;
 
         
@@ -153,7 +153,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (havePreInscription && preInscriptionId) {
             const url2 = `https://ac-controle.anem.dz/AllocationChomage/api/PreInscription/GetPreInscription?Id=${preInscriptionId}`;
-            const response2 = await axios.get(url2);
+            const response2 = await axios.get(url2, { timeout: 10000 });
             const data2 = response2.data;
             const Nom = data2.nomDemandeurAr;
             const Prenom = data2.prenomDemandeurAr;
@@ -177,7 +177,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
             const structureId = data2.structureId;
             if (structureId) {
                 const url3 = `https://ac-controle.anem.dz/AllocationChomage/api/RendezVous/GetAvailableDates?StructureId=${structureId}&PreInscriptionId=${preInscriptionId}`;
-                const response3 = await axios.get(url3);
+                const response3 = await axios.get(url3, { timeout: 10000 });
                 const data3 = response3.data;
                 localStorage.setItem('structureIdStored', structureId);
                 localStorage.setItem('preInscriptionIdStored', preInscriptionId);
@@ -211,21 +211,8 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
         }
     } catch (error) {
         console.error("حدث خطأ أثناء جلب البيانات:", error);
-        // document.getElementById("message-login").textContent = `حدث خطأ في الاتصال بالخادم. ${error}`;
+        document.getElementById("message-login").textContent = "حدث خطأ في الاتصال بالخادم.";
         document.getElementById("notify-login").style.display = "block";
-        if (error.response) {
-            // إذا تم استلام استجابة مع رمز حالة غير 2xx
-            console.error("خطأ في الاستجابة من الخادم:", error.response);
-            document.getElementById("message-login").textContent = `خطأ في الاستجابة من الخادم: ${error.response.status} - ${error.response.data}`;
-        } else if (error.request) {
-            // إذا لم يتم استلام استجابة من الخادم
-            console.error("لم يتم استلام استجابة من الخادم:", error.request);
-            document.getElementById("message-login").textContent = "لم يتم استلام استجابة من الخادم. يرجى التحقق من الاتصال.";
-        } else {
-            // خطأ حدث أثناء إعداد الطلب
-            console.error("حدث خطأ أثناء إعداد الطلب:", error.message);
-            document.getElementById("message-login").textContent = `حدث خطأ في الاتصال بالخادم: ${error.message}`;
-        }
     }
 
     setTimeout(function() {
