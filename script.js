@@ -124,13 +124,13 @@ async function checkRendeVous() {
                 }
             }
         } else {
-            document.getElementById("message-info").textContent = "حدث خطأ في الاتصال بالخادم.";
+            document.getElementById("message-info").textContent = `حدث خطأ في الاتصال بالخادم. 1 ${error}`;
             document.getElementById("notify-info").style.display = "block";
            document.getElementById("message-info").style.paddingTop = "2%";
         }
     } catch (error) {
         console.error("حدث خطأ أثناء جلب المواعيد:", error);
-        document.getElementById("message-info").textContent = "حدث خطأ في الاتصال بالخادم.";
+        document.getElementById("message-info").textContent = `حدث خطأ في الاتصال بالخادم. 2 ${error}`;
         document.getElementById("notify-info").style.display = "block";
     }
 }
