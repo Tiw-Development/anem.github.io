@@ -324,11 +324,7 @@ input:focus {
         width: 87%;
         /* height: 33rem; */
     }
-    .info-table-border {
-        width: 18.4rem;
-    left: 3%;
-    position: relative;
-    }
+   
     #notify-checked {
         width: 71%;
         max-width: 72%;
@@ -338,6 +334,7 @@ input:focus {
         top: 0.9rem;
     }
 }
+
 
 @media (min-width: 800px) and  (min-height: 1024px) and (max-width: 1100px) and  (max-height: 1400px) {
     .login-container {
