@@ -212,13 +212,8 @@ async function checkRendeVous() {
     try {
         const response = await axios.get(urlDates, {
             "headers": {
-            'Cookie': cookies,
             'Accept': 'application/json',
-            'Connection': "keep-alive",
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             "Accept-Language": "ar,en-US;q=0.9,en;q=0.8",
-            "Referer": "https://minha.anem.dz/",
-            "Origin": "https://minha.anem.dz"
             },
             timeout: 15000,
         });
@@ -279,14 +274,9 @@ async function checkSituasion() {
     try {
 
         const response = await axios.get(url, {
-            "headers": {
-                'Cookie': cookies,
+            "headers": { 
                 'Accept': 'application/json',
-                'Connection': "keep-alive",
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
                 "Accept-Language": "ar,en-US;q=0.9,en;q=0.8",
-                "Referer": "https://minha.anem.dz/",
-                "Origin": "https://minha.anem.dz"
                },
             timeout: 15000,
         });
@@ -644,33 +634,23 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     try {
         const response = await axios.get(url, {
            "headers": {
-            'Cookie': cookies,
             'Accept': 'application/json',
-            'Connection': "keep-alive",
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             "Accept-Language": "ar,en-US;q=0.9,en;q=0.8",
-            "Referer": "https://minha.anem.dz/",
-            "Origin": "https://minha.anem.dz"
                },
             timeout: 15000,
         });
 
         const data = response.data;
         const { preInscriptionId, havePreInscription, demandeurId } = data;
-        
+
          await delay(2000);
 
         if (havePreInscription && preInscriptionId) {
             const url2 = `${api}PreInscription/GetPreInscription?Id=${preInscriptionId}`;
             const response2 = await axios.get(url2, {
-               "headers": {
-                'Cookie': cookies,
+               "headers": {   
                 'Accept': 'application/json',
-                'Connection': "keep-alive",
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
                 "Accept-Language": "ar,en-US;q=0.9,en;q=0.8",
-                 "Referer": "https://minha.anem.dz/",
-                 "Origin": "https://minha.anem.dz"
                },
                 timeout: 15000,
             });
@@ -702,13 +682,9 @@ document.getElementById("loginForm").addEventListener("submit", async function (
             //     const url3 = `${api}RendezVous/GetAvailableDates?StructureId=${structureId}&PreInscriptionId=${preInscriptionId}`;
             //     const response3 = await axios.get(url3, {
             //         "headers": {
-            //             'Cookie': cookies,
+            // 
             //             'Accept': 'application/json',
-            //             'Connection': "keep-alive",
-            //             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
             //             "Accept-Language": "ar,en-US;q=0.9,en;q=0.8",
-            //             "Referer": "https://minha.anem.dz/",
-            //             "Origin": "https://minha.anem.dz"
             //         },
             //         timeout: 15000,
             //     });
